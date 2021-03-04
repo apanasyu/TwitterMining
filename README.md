@@ -10,17 +10,26 @@ The novel aspect of our approach is that it utilizes the creation times for maki
 # Preliminaries:
 
 Utilizing Ubuntu operating system
+
 Utilizing MongoDB for storing Tweets
+
 Utilizing Python 3.x as the programming language
 
+
 Python interfaces with MongoDB using pymongo: 
+
 pip install pymongo
+
 Python interfaces with Twitter using tweepy:
+
 pip install tweepy
+
 
 Important:
 Before using the Twitter API you are required to create and register an app (this is free), see:
+
 https://developer.twitter.com/en/docs/twitter-api/getting-started/guide
+
 (By registering an app you will obtain four tokens: consumer key, consumer secret, access token, and access secret. Go inside TwitterAPI.py and put these keys inside getAPI method).
 
 # Collecting Tweets into MongoDB
