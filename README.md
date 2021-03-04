@@ -14,7 +14,7 @@ Utilizing Ubuntu operating system, MongoDB for storing Tweets, Python 3.x as the
 Python interfaces with MongoDB using pymongo (pip install pymongo), with Twitter using tweepy (pip install tweepy).
 
 Important:
-Before using the Twitter API you are required to create and register an app (this is free), see:
+Before using the Twitter API you are required to create and register your app (this is free), see:
 
 https://developer.twitter.com/en/docs/twitter-api/getting-started/guide
 
@@ -22,9 +22,12 @@ https://developer.twitter.com/en/docs/twitter-api/getting-started/guide
 
 # Collecting Tweets into MongoDB
 
+Step 1:
 Create a folder for MongoDB to store info to:
 sudo mongod --port 27020 --dbpath '/media/Seagate Expansion Drive/MongoDB/'
 
+Step 2:
+Inside Main.py:
     port = 27020
     db_name = "RawTweetCollection"
     from CollectAStreamOfTweets import performRawCollection
