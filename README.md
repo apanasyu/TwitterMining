@@ -11,7 +11,7 @@ The novel aspect of our approach is that it utilizes the creation times for maki
 
 Utilizing Ubuntu operating system, MongoDB for storing Tweets, Python 3.x as the programming language.
 
-Python interfaces with MongoDB using pymongo (pip install pymongo), with Twitter using tweepy (pip install tweepy).
+Python interfaces with MongoDB using pymongo (pip install pymongo), with Twitter using tweepy (pip install tweepy). Other library dependencies: numpy, scipy, nltk.
 
 Important:
 Before using the Twitter API you are required to create and register your app (this is free), see:
@@ -20,7 +20,7 @@ https://developer.twitter.com/en/docs/twitter-api/getting-started/guide
 
 (By registering an app you will obtain four tokens: consumer key, consumer secret, access token, and access secret. Go inside TwitterAPI.py and put these keys inside getAPI method).
 
-# Collecting Tweets into MongoDB
+# A. Collecting Tweets into MongoDB
 
 Step 1:
 Create a folder for MongoDB to store info to:
@@ -48,4 +48,16 @@ For each message we record the message id, text, user screenName that created it
 Messages with geo will be typically < 1%:
 
 ![image](https://user-images.githubusercontent.com/80060152/110038494-d1a17b80-7d0d-11eb-9cf3-183ec88fcfa7.png)
+
+# B. Process Table(s) containing 24 hours of tweets
+
+We are utilizing the nltk library for tokenizing each tweet (from nltk.tokenize import TweetTokenizer).
+The hour from the creation time of the message is used. For each token we generate a time distribution (a normalized histogram with 24 bins one for each hour) that captures how likely the message was to be created at any hour.
+This is an example of a two time distributions.
+
+![image](https://user-images.githubusercontent.com/80060152/110045806-3a422580-7d19-11eb-8c29-c8e864ba3447.png)
+
+The table(s) for which collection is complete can be used to 
+
+
 
