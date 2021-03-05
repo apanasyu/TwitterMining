@@ -47,7 +47,7 @@ For each message we record: (i) related to message: id, text, creation time and 
 
 Messages with geo will be typically < 1%:
 
-![image](https://user-images.githubusercontent.com/80060152/110141300-014e9300-7da3-11eb-9b1d-5faa24e8ed54.png)
+![image](https://user-images.githubusercontent.com/80060152/110141459-2b07ba00-7da3-11eb-85bf-b7d0792e8d76.png)
 
 # B. Process Table(s) containing 24 hours of tweets
 
