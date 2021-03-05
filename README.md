@@ -54,7 +54,7 @@ Messages with geo will be typically < 1%:
 We are utilizing the nltk library for tokenizing each tweet (from nltk.tokenize import TweetTokenizer).
 The hour from the creation time of the message is used. For each token we generate a time distribution (a normalized histogram with 24 bins one for each hour) that captures how likely the message was to be created at any hour.
 
-Each time distribution is processed as such: (i) 24 hour time distribution repeated over 48 hour period (in blue), (ii) moving average n=5 used to achieve smoothness (in green), (iii) the start and end of the sleep cycle are the intersection points with a negative and positive slope below 33th percentile (in orange). Sleep portion expected to occupy a single continuous segment with three to four intersection points per 48 hours. A polynomial is fitted to the sleep cycle: f(t) = c0 + c1*t + c2*t2. If it is a U-shaped parabola the min is used for predicting the UTC offset of the geographic area that the message most likely to originate from.
+Each time distribution is processed as such: (i) 24 hour time distribution repeated over 48 hour period (in blue), (ii) moving average n=5 used to achieve smoothness (in green), (iii) the start and end of the sleep cycle are the intersection points with a negative and positive slope below 33th percentile (in orange). Sleep portion expected to occupy a single continuous segment with three to four intersection points per 48 hours. A polynomial is fitted to the sleep cycle: f(t) = c0 + c1 * t + c2 * t2. If it is a U-shaped parabola the min is used for predicting the UTC offset of the geographic area that the message most likely to originate from.
 
 This is an example of a two time distributions.
 
