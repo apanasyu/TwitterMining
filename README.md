@@ -41,9 +41,9 @@ Each 24 hour period will result in a Table with a couple million tweets. Each ta
 Below is a screenshot using MongoDB Compass:
 ![image](https://user-images.githubusercontent.com/80060152/110038400-b5054380-7d0d-11eb-9c4d-d196de3050cb.png)
 
-For each message we record the message id, text, user screenName that created it, the creation time. We also record any available geo in the form of place or coordinates from message and the user’s self-reported location from user (if such info is available):
+For each message we record: (i) related to message: id, text, creation time and (ii) related to user that created the message: id, screenName, creation time. We also record any available geo in the form of place or coordinates from message and the user’s self-reported location from user:
 
-![image](https://user-images.githubusercontent.com/80060152/110038450-c4848c80-7d0d-11eb-9559-d11290167c29.png)
+![image](https://user-images.githubusercontent.com/80060152/110140965-a74dcd80-7da2-11eb-9ae5-893aa59e2952.png)
 
 Messages with geo will be typically < 1%:
 
