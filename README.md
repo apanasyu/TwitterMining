@@ -58,6 +58,7 @@ Messages with geo will be typically < 1%:
     from Step2ProcessTableOfTweets import analyzeTokensInTables
     analyzeTokensInTables(db_nameAndCollection, minFreq, outputDir, port)
 
+Step 1: Form Time Distribution
 The database and table pairs that we want to analyze are sent to the method analyzeTokensInTables (in this way can focus on message traffic over multiple 24-hour periods). This method utilizes the NLTK library for tokenizing each tweet (from nltk.tokenize import TweetTokenizer). The hour from the creation time of the message is used. For each token we generate a time distribution (a normalized histogram with 24 bins one for each hour) that captures how likely the messages, associated with the token, were to be created at any hour.
 
 ![image](https://user-images.githubusercontent.com/80060152/110215537-59a39480-7e78-11eb-89bf-2fe6d028995d.png)
@@ -66,7 +67,7 @@ In the same fashion the creation times associated with the users that had create
 
 The output directory will also store the CSV files.  
 
-
+Step 2: Use Time Distribution to predict Geographic Region
 
 Each time distribution is processed as such: (i) 24 hour time distribution repeated over 48 hour period (in blue), (ii) moving average n=5 used to achieve smoothness (in green), (iii) the start and end of the sleep cycle are the intersection points with a negative and positive slope below 33th percentile (in orange). Sleep portion expected to occupy a single continuous segment with three to four intersection points per 48 hours. A polynomial is fitted to the sleep cycle: f(t) = c0 + c1 * t + c2 * t2. If it is a U-shaped parabola, the min is used for predicting the UTC offset of the geographic area that the message most likely originates from.
 
