@@ -76,7 +76,7 @@ Figure below is an example of two time distributions (notice the U-shape valley 
 
 The time distribution analysis for each token is stored in a temporary database Temp_Analysis using Tables: (i) TokenTimeFeaturesProcessed using message creation times and (ii) TokenTimeFeaturesProcessedUser using user creation times. Here is the info in MongoDB after processing a collection over 24 hours.
 
-<img src="https://user-images.githubusercontent.com/80060152/110257922-0c095380-7f6e-11eb-8337-59a4418c8411.png" width="500">
+![image](https://user-images.githubusercontent.com/80060152/110257922-0c095380-7f6e-11eb-8337-59a4418c8411.png)
 
 Note: not all tokens had a time distribution for which a U-shaped parabola could be used to predict UTC (out of 9246 messages 8008 contained a UTC prediction).
 
@@ -116,7 +116,7 @@ The method getTokenToRegion assigns region based on UTC prediction.
 
 This example uses tokens associated with Asia/Oceania. The focus is on tokens that are known person or topic (on Twitter @ and # have this special meaning). The top 50 tokens are visualized in a WordCloud (this WordCloud generated using collection on 03/05/2021).
 
-<img src="https://user-images.githubusercontent.com/80060152/110263519-f9e6df80-7f84-11eb-8c78-047f06281619.png" width="400">
+<img src="https://user-images.githubusercontent.com/80060152/110263519-f9e6df80-7f84-11eb-8c78-047f06281619.png" width="200">
 
 In Pandas it is possible to quickly analyze any specific time distribution(s). For example, for Asia/Oceania the top 10 tokens are used to generate a box plot that shows the typical time distribution has a lack of activity during hours (0-1 and 18-23) via following code:
 
