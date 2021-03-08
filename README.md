@@ -11,7 +11,7 @@ The novel aspect of our approach is that it utilizes the creation times for maki
 
 Utilizing Ubuntu operating system, MongoDB for storing Tweets, Python 3.x as the programming language.
 
-Python interfaces with MongoDB using pymongo (pip install pymongo), with Twitter using tweepy (pip install tweepy). Other library dependencies: numpy, scipy, nltk.
+Python interfaces with MongoDB using pymongo (pip install pymongo), with Twitter using tweepy (pip install tweepy). Other library dependencies: numpy, scipy, nltk, WordCloud.
 
 Important:
 Before using the Twitter API you are required to create and register your app (this is free), see:
@@ -79,7 +79,7 @@ The time distribution analysis for each token is stored in a temporary database 
 
 Note: not all tokens had a time distribution for which a U-shaped parabola could be used to predict UTC (out of 9246 messages 8008 contained a UTC prediction).
 
-Step 3: Use UTC to associated a geographic region
+Step 3: UTC used to associate to a one of three high-level geographic regions
 
     from Step3AnalyzeTokens import getTokenToRegion
     rSquareT = 0.85
@@ -88,24 +88,34 @@ Step 3: Use UTC to associated a geographic region
     atUser = False
     df_all, americas, africaEurope, asiaAustralia = getTokenToRegion(port, atUser, rSquareT, minRecordT, powerC2T)
 
-    tokens = set(list(df_all["id"]))
-    tokenPersonTopic = set([])
-    for token in tokens:
-        if len(token) > 1:
-            if token.startswith('@') or token.startswith('#'):
-                tokenPersonTopic.add(token)
-
-    df = asiaAustralia
-    df = df.loc[df['id'].isin(list(tokenPersonTopic))]
-    print(df.nlargest(10, 'totalRecords')["id"]) 
-
 The MongoDB tables are returned as Pandas DataFrames. We filter the DataFrame to those tokens with high confidence UTC predictions, where (i) polynomial fitted over sleep cycle has R^2 over 0.85, (ii) time distribution contains at least 500 creation times, (iii) power coefficient c2 > 0.001 (indicating strong U-shape). 
 
 The method getTokenToRegion assigns region based on UTC prediction.
 
 ![image](https://user-images.githubusercontent.com/80060152/110258307-f72dbf80-7f6f-11eb-8423-c81c5b219c67.png)
 
-In this example we also focus on tokens that are known person or topic (on Twitter @ and # have this special meaning). The top 10 tokens associated with Asia/Oceania are:
+Step 4: Form Visualization
+
+    df = asiaAustralia
+    tokens = set(list(df["id"]))
+    tokenPersonTopic = set([])
+    for token in tokens:
+        if len(token) > 1:
+            if token.startswith('@') or token.startswith('#'):
+                tokenPersonTopic.add(token)
+
+    df = df.loc[df['id'].isin(list(tokenPersonTopic))]
+    N = 50
+    topN = list(df.nlargest(N, 'totalRecords')["id"])
+    topNDF = df.loc[df['id'].isin(topN)]
+    tokenToCount = dict(zip(list(df["id"]), list(df['totalRecords'])))
+
+    from step4Visualize import formWordCloud
+    formWordCloud(tokenToCount, "Asia_Oceania_WordCloud", outputDir)
+
+In this example, we also on the tokens associated with Asia/Oceania. The focus is on tokens that are known person or topic (on Twitter @ and # have this special meaning). The top 50 tokens are visualized in a WordCloud (this WordCloud generated using collection on 03/05/2021).
+
+file:///media/aleksei1985/Seagate%20Expansion%20Drive/test2/Asia_Oceania_WordCloud.png
 
 
 
