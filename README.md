@@ -116,7 +116,7 @@ The method getTokenToRegion assigns region based on UTC prediction.
 
 This example uses tokens associated with Asia/Oceania. The focus is on tokens that are known person or topic (on Twitter @ and # have this special meaning). The top 50 tokens are visualized in a WordCloud (this WordCloud generated using collection on 03/05/2021).
 
-<img src="https://user-images.githubusercontent.com/80060152/110263519-f9e6df80-7f84-11eb-8c78-047f06281619.png" width="200">
+<img src="https://user-images.githubusercontent.com/80060152/110348403-9d74d600-7fff-11eb-9af8-3acc0727efa1.png" width="200">
 
 In Pandas it is possible to quickly analyze any specific time distribution(s). For example, for Asia/Oceania the top 10 tokens are used to generate a box plot that shows the typical time distribution has a lack of activity during hours (0-1 and 18-23) via following code:
 
