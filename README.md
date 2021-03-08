@@ -4,7 +4,7 @@ Contains code for (i) collecting daily messages using Twitter Streaming API and 
 
 Example output from program, visualized using word clouds, where the top 50 tokens are persons (starts with @) or topics (starts with #) for each geographic region (for collection for a day from Dec 2020).
 
-<img src="https://user-images.githubusercontent.com/80060152/110036463-0bbd4e00-7d0b-11eb-958d-e9732843b81b.png" width="500">
+<img src="https://user-images.githubusercontent.com/80060152/110036463-0bbd4e00-7d0b-11eb-958d-e9732843b81b.png" width="800">
 
 The novel aspect of our approach is that it utilizes the creation times for making these associations. The geo is collected just for comparison purposes. The method also is able to filter out global like tokens that are used worldwide (for example token 'the', 'has', but also '#covid', see paper reference at the end for more details).
 
@@ -43,12 +43,11 @@ Below is a screenshot using MongoDB Compass:
 ![image](https://user-images.githubusercontent.com/80060152/110038400-b5054380-7d0d-11eb-9c4d-d196de3050cb.png)
 
 For each message we record: (i) related to message: id, text, creation time and (ii) related to user that created the message: id, screenName, creation time. We also record any available geo in the form of place or coordinates from message and the user’s self-reported location from user:
-
 ![image](https://user-images.githubusercontent.com/80060152/110140965-a74dcd80-7da2-11eb-9ae5-893aa59e2952.png)
 
 Messages with geo will be typically < 1%:
 
-![image](https://user-images.githubusercontent.com/80060152/110141459-2b07ba00-7da3-11eb-85bf-b7d0792e8d76.png)
+<img src="https://user-images.githubusercontent.com/80060152/110141459-2b07ba00-7da3-11eb-85bf-b7d0792e8d76.png" width="800">
 
 # B. Process Table(s) containing 24 hours of tweets
 
@@ -62,7 +61,7 @@ Messages with geo will be typically < 1%:
 Step 1: Form Time Distribution
 The database and table pairs that we want to analyze are sent to the method analyzeTokensInTables (in this way can focus on message traffic over multiple 24-hour periods). This method utilizes the NLTK library for tokenizing each tweet (from nltk.tokenize import TweetTokenizer). The hour from the creation time of the message is used. For each token we generate a time distribution (a normalized histogram with 24 bins one for each hour) that captures how likely the messages, associated with the token, were to be created at any hour.
 
-![image](https://user-images.githubusercontent.com/80060152/110215537-59a39480-7e78-11eb-89bf-2fe6d028995d.png)
+<img src="https://user-images.githubusercontent.com/80060152/110215537-59a39480-7e78-11eb-89bf-2fe6d028995d.png" width="800">
 
 Second, instead of message creation times, the creation times associated with the users that had created the messages can be utilized to form a time distribution (when focussing on users we ensure that each user appears only once; whereas for message traffic it is possible that multiple messages originate from the same user). The time distribution for each token is stored in a temporary database Temp_Analysis using Tables: (i) TimeDist_Combined using message creation times and (ii) TimeDist_Combined_AtUser using user creation times.
 
@@ -72,7 +71,7 @@ Each time distribution is processed as such: (i) 24 hour time distribution repea
 
 Figure below is an example of two time distributions (notice the U-shape valley below the 33th percentile in each).
 
-![image](https://user-images.githubusercontent.com/80060152/110045806-3a422580-7d19-11eb-8c29-c8e864ba3447.png)
+<img src="https://user-images.githubusercontent.com/80060152/110045806-3a422580-7d19-11eb-8c29-c8e864ba3447.png" width="800">
 
 The time distribution analysis for each token is stored in a temporary database Temp_Analysis using Tables: (i) TokenTimeFeaturesProcessed using message creation times and (ii) TokenTimeFeaturesProcessedUser using user creation times. Here is the info in MongoDB after processing a collection over 24 hours.
 
@@ -93,7 +92,7 @@ The MongoDB tables are returned as Pandas DataFrames. We filter the DataFrame to
 
 The method getTokenToRegion assigns region based on UTC prediction.
 
-![image](https://user-images.githubusercontent.com/80060152/110258307-f72dbf80-7f6f-11eb-8423-c81c5b219c67.png)
+<img src="https://user-images.githubusercontent.com/80060152/110258307-f72dbf80-7f6f-11eb-8423-c81c5b219c67.png" width="800">
 
 # C. Form Visualizations
 
@@ -116,11 +115,11 @@ The method getTokenToRegion assigns region based on UTC prediction.
 
 This example uses tokens associated with Asia/Oceania. The focus is on tokens that are known person or topic (on Twitter @ and # have this special meaning). The top 50 tokens are visualized in a WordCloud (this WordCloud generated using collection on 03/05/2021).
 
-![image](https://user-images.githubusercontent.com/80060152/110263519-f9e6df80-7f84-11eb-8c78-047f06281619.png)
+<img src="https://user-images.githubusercontent.com/80060152/110263519-f9e6df80-7f84-11eb-8c78-047f06281619.png" width="800">
 
 In Pandas it is possible to quickly analyze any specific time distribution(s). For example, for Asia/Oceania the top 10 tokens are used to generate a box plot that shows the typical time distribution has a lack of activity during hours (0-1 and 18-23) via following code:
 
-![image](https://user-images.githubusercontent.com/80060152/110263117-acb63e00-7f83-11eb-8b3b-f652bcb8a1ec.png)
+<img src="https://user-images.githubusercontent.com/80060152/110263117-acb63e00-7f83-11eb-8b3b-f652bcb8a1ec.png" width="800">
 
     import matplotlib.pyplot as plt 
     db_name = "Temp_Analysis"
