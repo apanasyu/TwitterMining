@@ -62,7 +62,7 @@ Messages with geo will be typically < 1%:
 Step 1: Form Time Distribution
 The database and table pairs that we want to analyze are sent to the method analyzeTokensInTables (in this way can focus on message traffic over multiple 24-hour periods). This method utilizes the NLTK library for tokenizing each tweet (from nltk.tokenize import TweetTokenizer). The hour from the creation time of the message is used. For each token we generate a time distribution (a normalized histogram with 24 bins one for each hour) that captures how likely the messages, associated with the token, were to be created at any hour.
 
-<img src="https://user-images.githubusercontent.com/80060152/110215537-59a39480-7e78-11eb-89bf-2fe6d028995d.png" width="500">
+<img src="https://user-images.githubusercontent.com/80060152/110215537-59a39480-7e78-11eb-89bf-2fe6d028995d.png" width="600">
 
 Second, instead of message creation times, the creation times associated with the users that had created the messages can be utilized to form a time distribution (when focussing on users we ensure that each user appears only once; whereas for message traffic it is possible that multiple messages originate from the same user). The time distribution for each token is stored in a temporary database Temp_Analysis using Tables: (i) TimeDist_Combined using message creation times and (ii) TimeDist_Combined_AtUser using user creation times.
 
@@ -93,7 +93,7 @@ The MongoDB tables are returned as Pandas DataFrames. We filter the DataFrame to
 
 The method getTokenToRegion assigns region based on UTC prediction.
 
-<img src="https://user-images.githubusercontent.com/80060152/110258307-f72dbf80-7f6f-11eb-8423-c81c5b219c67.png" width="400">
+<img src="https://user-images.githubusercontent.com/80060152/110258307-f72dbf80-7f6f-11eb-8423-c81c5b219c67.png" width="500">
 
 # C. Form Visualizations
 
@@ -143,3 +143,6 @@ In Pandas it is possible to quickly analyze any specific time distribution(s). F
 # D. Associations using Geo
 
 For evaluation purposes we also assign a label based on the geo found in messages. Geo is in the form of point coordinates as well as place which contains bounding box.
+
+<img src="https://user-images.githubusercontent.com/80060152/110343247-4c161800-7ffa-11eb-908d-ac5cd9ec2c89.png" width="500">
+
