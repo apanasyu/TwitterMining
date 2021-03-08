@@ -94,7 +94,7 @@ The method getTokenToRegion assigns region based on UTC prediction.
 
 ![image](https://user-images.githubusercontent.com/80060152/110258307-f72dbf80-7f6f-11eb-8423-c81c5b219c67.png)
 
-Step 4: Form Visualization
+# C. Form Visualizations
 
     df = asiaAustralia
     tokens = set(list(df["id"]))
@@ -113,9 +113,9 @@ Step 4: Form Visualization
     from step4Visualize import formWordCloud
     formWordCloud(tokenToCount, "Asia_Oceania_WordCloud", outputDir)
 
-In this example, we focus on tokens associated with Asia/Oceania. The focus is on tokens that are known person or topic (on Twitter @ and # have this special meaning). The top 50 tokens are visualized in a WordCloud (this WordCloud generated using collection on 03/05/2021).
+This example uses tokens associated with Asia/Oceania. The focus is on tokens that are known person or topic (on Twitter @ and # have this special meaning). The top 50 tokens are visualized in a WordCloud (this WordCloud generated using collection on 03/05/2021).
 
-![image](https://user-images.githubusercontent.com/80060152/110262102-98247680-7f80-11eb-8be5-427ce4167247.png)
+![image](https://user-images.githubusercontent.com/80060152/110263519-f9e6df80-7f84-11eb-8c78-047f06281619.png)
 
 In Pandas it is possible to quickly analyze any specific time distribution(s). For example, for Asia/Oceania the top 10 tokens are used to generate a box plot that shows the typical time distribution has a lack of activity during hours (18-24) via following code:
 
