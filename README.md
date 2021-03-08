@@ -148,6 +148,6 @@ For evaluation purposes we also assign a label based on the geo found in message
 
 For coordinates specified using a bounding box, both the longitude components had to be associated with the same region. A token is assigned a label based on the region which captured the biggest ratio of messages. For example, here are the top 20 person/topic tokens and associated label (the last column shows number of messages with geo used in determining label). Table based on a single 24 hour collection of tweets, the more collections the higher the confidence in the labels.
 
-![image](https://user-images.githubusercontent.com/80060152/110350673-f6de0480-8001-11eb-8d29-790270784691.png)
+![image](https://user-images.githubusercontent.com/80060152/110351170-8be0fd80-8002-11eb-9d4f-e3366ed4490d.png)
 
 The labels via Geo can be compared against the labels formed using temporal features.
