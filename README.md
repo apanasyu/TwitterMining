@@ -117,7 +117,7 @@ This example uses tokens associated with Asia/Oceania. The focus is on tokens th
 
 ![image](https://user-images.githubusercontent.com/80060152/110263519-f9e6df80-7f84-11eb-8c78-047f06281619.png)
 
-In Pandas it is possible to quickly analyze any specific time distribution(s). For example, for Asia/Oceania the top 10 tokens are used to generate a box plot that shows the typical time distribution has a lack of activity during hours (18-24) via following code:
+In Pandas it is possible to quickly analyze any specific time distribution(s). For example, for Asia/Oceania the top 10 tokens are used to generate a box plot that shows the typical time distribution has a lack of activity during hours (0-1 and 18-23) via following code:
 
 ![image](https://user-images.githubusercontent.com/80060152/110263117-acb63e00-7f83-11eb-8b3b-f652bcb8a1ec.png)
 
@@ -139,3 +139,6 @@ In Pandas it is possible to quickly analyze any specific time distribution(s). F
     df.plot.box()
     plt.show()
 
+# D. Associations using Geo
+
+For evaluation purposes we also assign a label based on the geo found in messages. Geo is in the form of point coordinates as well as place which contains bounding box.
