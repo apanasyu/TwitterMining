@@ -79,7 +79,7 @@ The time distribution analysis for each token is stored in a temporary database 
 
 Note: not all tokens had a time distribution for which a U-shaped parabola could be used to predict UTC (out of 9246 messages 8008 contained a UTC prediction).
 
-Step 3: UTC used to associate to a one of three high-level geographic regions
+Step 3: UTC used to associate to one of three high-level geographic regions
 
     from Step3AnalyzeTokens import getTokenToRegion
     rSquareT = 0.85
@@ -113,9 +113,29 @@ Step 4: Form Visualization
     from step4Visualize import formWordCloud
     formWordCloud(tokenToCount, "Asia_Oceania_WordCloud", outputDir)
 
-In this example, we also on the tokens associated with Asia/Oceania. The focus is on tokens that are known person or topic (on Twitter @ and # have this special meaning). The top 50 tokens are visualized in a WordCloud (this WordCloud generated using collection on 03/05/2021).
+In this example, we focus on tokens associated with Asia/Oceania. The focus is on tokens that are known person or topic (on Twitter @ and # have this special meaning). The top 50 tokens are visualized in a WordCloud (this WordCloud generated using collection on 03/05/2021).
 
-file:///media/aleksei1985/Seagate%20Expansion%20Drive/test2/Asia_Oceania_WordCloud.png
+![image](https://user-images.githubusercontent.com/80060152/110262102-98247680-7f80-11eb-8be5-427ce4167247.png)
 
+In Pandas it is possible to quickly analyze any specific time distribution(s). For example, for Asia/Oceania the top 10 tokens are used to generate a box plot that shows the typical time distribution has a lack of activity during hours (18-24) via following code:
 
+![image](https://user-images.githubusercontent.com/80060152/110263117-acb63e00-7f83-11eb-8b3b-f652bcb8a1ec.png)
+
+    import matplotlib.pyplot as plt 
+    db_name = "Temp_Analysis"
+    collectionTimeDistMessage = "TimeDist_Combined"
+    collectionTimeDistUser = "TimeDist_Combined_AtUser"
+    collectionTimeFeaturesMessage = "TokenTimeFeaturesProcessed"
+    collectionTimeFeaturesUser = "TokenTimeFeaturesProcessedUser"
+
+    from MongoDBInterface import getMongoIntoPandas
+    df = getMongoIntoPandas(port, db_name, collectionTimeDistMessage, None)
+    print df
+    df = df.loc[df['_id'].isin(topN)]
+    hours = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23']
+    normalizedTimeDistDF = df[hours].div(df[hours].sum(axis=1), axis=0)
+    df = normalizedTimeDistDF.dropna()    
+    df = df[hours]
+    df.plot.box()
+    plt.show()
 
