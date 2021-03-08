@@ -142,7 +142,9 @@ In Pandas it is possible to quickly analyze any specific time distribution(s). F
 
 # D. Associations using Geo
 
-For evaluation purposes we also assign a label based on the geo found in messages. Geo is in the form of point coordinates as well as place which contains bounding box.
+For evaluation purposes we also assign a label based on the geo found in messages. Geo is in the form of point coordinates as well as place which specifies coordinates via a bounding box. The following used to assign a label:
 
 <img src="https://user-images.githubusercontent.com/80060152/110343247-4c161800-7ffa-11eb-908d-ac5cd9ec2c89.png" width="500">
+
+For coordinates specified using a bounding box, both the longitude components had to be associated with the same region. A token is assigned a label based on the region which captured the biggest ratio of messages.
 
