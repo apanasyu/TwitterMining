@@ -86,7 +86,7 @@ Step 3: UTC used to associate to one of three high-level geographic regions
     minRecordT = 500
     powerC2T = 0.001
     atUser = False
-    df_all, americas, africaEurope, asiaAustralia = getTokenToRegion(port, atUser, rSquareT, minRecordT, powerC2T)
+    americas, africaEurope, asiaAustralia = getTokenToRegion(port, atUser, rSquareT, minRecordT, powerC2T)
 
 The MongoDB tables are returned as Pandas DataFrames. We filter the DataFrame to those tokens with high confidence UTC predictions, where (i) polynomial fitted over sleep cycle has R^2 over 0.85, (ii) time distribution contains at least 500 creation times, (iii) power coefficient c2 > 0.001 (indicating strong U-shape). 
 
