@@ -62,7 +62,7 @@ Messages with geo will be typically < 1%:
 Step 1: Form Time Distribution
 The database and table pairs that we want to analyze are sent to the method analyzeTokensInTables (in this way can focus on message traffic over multiple 24-hour periods). This method utilizes the NLTK library for tokenizing each tweet (from nltk.tokenize import TweetTokenizer). The hour from the creation time of the message is used. For each token we generate a time distribution (a normalized histogram with 24 bins one for each hour) that captures how likely the messages, associated with the token, were to be created at any hour.
 
-<img src="https://user-images.githubusercontent.com/80060152/110215537-59a39480-7e78-11eb-89bf-2fe6d028995d.png" width="800">
+<img src="https://user-images.githubusercontent.com/80060152/110215537-59a39480-7e78-11eb-89bf-2fe6d028995d.png" width="500">
 
 Second, instead of message creation times, the creation times associated with the users that had created the messages can be utilized to form a time distribution (when focussing on users we ensure that each user appears only once; whereas for message traffic it is possible that multiple messages originate from the same user). The time distribution for each token is stored in a temporary database Temp_Analysis using Tables: (i) TimeDist_Combined using message creation times and (ii) TimeDist_Combined_AtUser using user creation times.
 
@@ -72,11 +72,11 @@ Each time distribution is processed as such: (i) 24 hour time distribution repea
 
 Figure below is an example of two time distributions (notice the U-shape valley below the 33th percentile in each).
 
-<img src="https://user-images.githubusercontent.com/80060152/110045806-3a422580-7d19-11eb-8c29-c8e864ba3447.png" width="800">
+<img src="https://user-images.githubusercontent.com/80060152/110045806-3a422580-7d19-11eb-8c29-c8e864ba3447.png" width="500">
 
 The time distribution analysis for each token is stored in a temporary database Temp_Analysis using Tables: (i) TokenTimeFeaturesProcessed using message creation times and (ii) TokenTimeFeaturesProcessedUser using user creation times. Here is the info in MongoDB after processing a collection over 24 hours.
 
-![image](https://user-images.githubusercontent.com/80060152/110257922-0c095380-7f6e-11eb-8337-59a4418c8411.png)
+<img src="https://user-images.githubusercontent.com/80060152/110257922-0c095380-7f6e-11eb-8337-59a4418c8411.png" width="500">
 
 Note: not all tokens had a time distribution for which a U-shaped parabola could be used to predict UTC (out of 9246 messages 8008 contained a UTC prediction).
 
@@ -93,7 +93,7 @@ The MongoDB tables are returned as Pandas DataFrames. We filter the DataFrame to
 
 The method getTokenToRegion assigns region based on UTC prediction.
 
-<img src="https://user-images.githubusercontent.com/80060152/110258307-f72dbf80-7f6f-11eb-8423-c81c5b219c67.png" width="800">
+<img src="https://user-images.githubusercontent.com/80060152/110258307-f72dbf80-7f6f-11eb-8423-c81c5b219c67.png" width="400">
 
 # C. Form Visualizations
 
@@ -116,11 +116,11 @@ The method getTokenToRegion assigns region based on UTC prediction.
 
 This example uses tokens associated with Asia/Oceania. The focus is on tokens that are known person or topic (on Twitter @ and # have this special meaning). The top 50 tokens are visualized in a WordCloud (this WordCloud generated using collection on 03/05/2021).
 
-<img src="https://user-images.githubusercontent.com/80060152/110263519-f9e6df80-7f84-11eb-8c78-047f06281619.png" width="800">
+<img src="https://user-images.githubusercontent.com/80060152/110263519-f9e6df80-7f84-11eb-8c78-047f06281619.png" width="400">
 
 In Pandas it is possible to quickly analyze any specific time distribution(s). For example, for Asia/Oceania the top 10 tokens are used to generate a box plot that shows the typical time distribution has a lack of activity during hours (0-1 and 18-23) via following code:
 
-<img src="https://user-images.githubusercontent.com/80060152/110263117-acb63e00-7f83-11eb-8b3b-f652bcb8a1ec.png" width="800">
+<img src="https://user-images.githubusercontent.com/80060152/110263117-acb63e00-7f83-11eb-8b3b-f652bcb8a1ec.png" width="400">
 
     import matplotlib.pyplot as plt 
     db_name = "Temp_Analysis"
