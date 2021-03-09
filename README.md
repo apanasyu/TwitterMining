@@ -157,5 +157,7 @@ The following code generates labels for all tokens that are contained in message
 
 The labels via Geo can be compared against the labels formed using temporal features. From the book chapter, using a collection over 5 days the table shows how the two compare (where NA_SA = Americas, AF_EUR = Europe/Africa, and AS_OC = Asia/Oceania). The first row, with no restriction, illustrates that if a UTC prediction is made it generally has good accuracy. The accuracy is high, particularly for those tokens which have ground truth assembled from more messages (larger x) and with high confidence UTC predictions (high $R^2$ and $c_2$). 
 
-![image](https://user-images.githubusercontent.com/80060152/110351449-d6fb1080-8002-11eb-9f05-6f8f91a677ec.png)
+<img src="https://user-images.githubusercontent.com/80060152/110351449-d6fb1080-8002-11eb-9f05-6f8f91a677ec.png" width="500">
 
+Published in Book Chapter:
+Panasyuk, Aleksey, Kishan G. Mehrotra, Edmund Szu-Li Yu, and Chilukuri K. Mohan Inferring Degree of Localization and Popularity of Twitter Topics and Persons using Temporal Features. Lecture Notes in Computer Science, Springer 2021
